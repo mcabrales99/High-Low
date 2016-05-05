@@ -1,27 +1,49 @@
 <?php
 
+if (($argc == 3) && is_numeric($argv[1]) && is_numeric($argv[2])) {
+    
+    $min = $argv[1];
 
-$randomNumber = mt_rand(1,100);
+    $max = $argv[2];
 
+    $randomNumber = mt_rand($min,$max);
+}else   {
+
+    echo "Please add a min/max value\n";
+
+     exit();
+}
 //echo "$randomNumber\n";
 do  {
-echo "Guess a number between 1 and 100\n";
+    echo "Guess a number between {$min} and {$max}\n";
 
-$numberGuessed = trim(fgets(STDIN));
+    $numberGuessed = trim(fgets(STDIN));
 
-//echo "$numberGuessed\n";
+    //echo "$numberGuessed\n";
 
-if ($numberGuessed < $randomNumber) {
+    if (is_numeric($numberGuessed)) {
 
-    echo "HIGHER\n";
 
-} elseif ($numberGuessed > $randomNumber)   {
+        if ($numberGuessed < $randomNumber) {
 
-    echo "LOWER\n";
+            echo "HIGHER\n";
 
-} else {
+        } elseif ($numberGuessed > $randomNumber)   {
 
-    echo "Good Guess!";
-    
-}
-}while($randomNumber != $numberGuessed);
+            echo "LOWER\n";
+
+        } else {
+
+            echo "Good Guess!\n";
+        }
+
+    }else  {
+
+        echo "NOT a Number\n";
+
+    }
+}while($randomNumber != $numberGuessed);$randomNumber = mt_rand($min,$max);
+
+    echo "Do you want to play Again?\n";
+
+
